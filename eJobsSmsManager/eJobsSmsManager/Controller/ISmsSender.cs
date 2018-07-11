@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace eJobsSmsManager.Controller
+{
+    interface ISmsSender
+    {
+        string dbserver { get; }
+
+        //interface methods
+        DataTable getUnsentItemsOnline();
+        void updateRecordOnline(int serviceId, int refId);
+        void updateRecord(int serviceId);
+        void insertRecord(string Id, string jobId, string appId, string message, string sendDt , string status);
+        DataTable getRecord();
+        string getRefID(string id);
+        string SendSMS(string Recipient, string Message);
+        void insertRecipients(string notificationid, string recipient);
+        bool checkrecord(int serviceid);
+        bool checkstatus(int serviceid);
+   }
+}

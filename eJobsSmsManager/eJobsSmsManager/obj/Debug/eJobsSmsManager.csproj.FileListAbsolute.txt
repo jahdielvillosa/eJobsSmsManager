@@ -1,0 +1,7 @@
+C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.csprojResolveAssemblyReference.cache
+C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Controls.SMSinbox.resources
+C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Form1.resources
+C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Properties.Resources.resources
+C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Views.AboutForm.resources
+C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Views.Main.resources
+C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.csproj.GenerateResource.Cache

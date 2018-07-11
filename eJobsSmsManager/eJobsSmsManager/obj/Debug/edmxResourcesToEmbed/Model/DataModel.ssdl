@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DataModelStoreContainer">
+    <EntitySet Name="Notifications" EntityType="DataModel.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Recipients" EntityType="DataModel.Store.Recipients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Logs" EntityType="DataModel.Store.Logs" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="NotificationRecipients" Association="DataModel.Store.NotificationRecipients">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="Recipients" EntitySet="Recipients" />
+    </AssociationSet>
+    <AssociationSet Name="NotificationLog" Association="DataModel.Store.NotificationLog">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="Log" EntitySet="Logs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="svcId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Msg" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="JobId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Recipients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NotificationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Logs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DTSend" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NotificationId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="NotificationRecipients">
+    <End Role="Notification" Type="DataModel.Store.Notifications" Multiplicity="1" />
+    <End Role="Recipients" Type="DataModel.Store.Recipients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recipients">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NotificationLog">
+    <End Role="Notification" Type="DataModel.Store.Notifications" Multiplicity="1" />
+    <End Role="Log" Type="DataModel.Store.Logs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

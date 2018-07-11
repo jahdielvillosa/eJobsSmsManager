@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="DataModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Notifications" EntityType="DataModel.Notification" />
+    <EntitySet Name="Recipients" EntityType="DataModel.Recipients" />
+    <AssociationSet Name="NotificationRecipients" Association="DataModel.NotificationRecipients">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="Recipients" EntitySet="Recipients" />
+    </AssociationSet>
+    <EntitySet Name="Logs" EntityType="DataModel.Log" />
+    <AssociationSet Name="NotificationLog" Association="DataModel.NotificationLog">
+      <End Role="Notification" EntitySet="Notifications" />
+      <End Role="Log" EntitySet="Logs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="svcId" Type="String" Nullable="false" />
+    <Property Name="Msg" Type="String" Nullable="false" />
+    <Property Name="JobId" Type="String" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" />
+    <NavigationProperty Name="Recipients" Relationship="DataModel.NotificationRecipients" FromRole="Notification" ToRole="Recipients" />
+    <NavigationProperty Name="Logs" Relationship="DataModel.NotificationLog" FromRole="Notification" ToRole="Log" />
+  </EntityType>
+  <EntityType Name="Recipients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="String" Nullable="false" />
+    <NavigationProperty Name="Notification" Relationship="DataModel.NotificationRecipients" FromRole="Recipients" ToRole="Notification" />
+    <Property Name="NotificationId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="NotificationRecipients">
+    <End Type="DataModel.Notification" Role="Notification" Multiplicity="1" />
+    <End Type="DataModel.Recipients" Role="Recipients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recipients">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" Nullable="false" />
+    <Property Name="DTSend" Type="String" Nullable="false" />
+    <NavigationProperty Name="Notification" Relationship="DataModel.NotificationLog" FromRole="Log" ToRole="Notification" />
+    <Property Name="NotificationId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="NotificationLog">
+    <End Type="DataModel.Notification" Role="Notification" Multiplicity="1" />
+    <End Type="DataModel.Log" Role="Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="NotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
