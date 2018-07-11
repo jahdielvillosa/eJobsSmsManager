@@ -14,7 +14,7 @@ namespace eJobsSmsManager
     public partial class Form1 : Form
     {
         //Views
-        Main mainView = new Main();
+        MainForm mainView = new MainForm();
         AboutForm AboutView = new AboutForm();
 
         public Form1()

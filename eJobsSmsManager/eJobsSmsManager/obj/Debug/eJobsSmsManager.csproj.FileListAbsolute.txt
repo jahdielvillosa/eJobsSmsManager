@@ -5,3 +5,24 @@ C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsM
 C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Views.AboutForm.resources
 C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Views.Main.resources
 C:\Users\Villosa\Documents\Visual Studio 2015\Projects\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.csproj.GenerateResource.Cache
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\eJobsSmsManager.exe.config
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\eJobsSmsManager.exe
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\eJobsSmsManager.pdb
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\Bunifu_UI_v1.52.dll
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\EntityFramework.dll
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\GSMCommServer.dll
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\GSMCommShared.dll
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\GSMCommunication.dll
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\PDUConverter.dll
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\EntityFramework.xml
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Controls.SMSinbox.resources
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Form1.resources
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Properties.Resources.resources
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Views.AboutForm.resources
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Views.MainForm.resources
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.csproj.GenerateResource.Cache
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.exe
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.pdb
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.csprojResolveAssemblyReference.cache

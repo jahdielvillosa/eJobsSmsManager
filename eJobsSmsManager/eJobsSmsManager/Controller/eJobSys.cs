@@ -45,21 +45,17 @@ namespace eJobsSmsManager.Controller
         }
 
 
-        public void updateRecord(int serviceId)
+        public void updateRecordStatus(int serviceId)
         {
 
-            string url = "http://localhost:49360//SMSWebService.asmx/updateRecord";
+            string url = "http://localhost:49360/LocalService.asmx/updateRecord";
 
             var data = new NameValueCollection();
-
+            Console.WriteLine(serviceId);
             data["serviceId"] = serviceId.ToString();
-
-            // Console.WriteLine("data update " + data);
-
+            
             string responseInString = webData.sendMsgData(url, data);
-
-            Console.WriteLine("updateRecord :" + responseInString);
-
+            Console.WriteLine("updated record " + responseInString);
         }
 
         public string getRefID(string id)
@@ -71,13 +67,12 @@ namespace eJobsSmsManager.Controller
             data["serviceid"] = "1";
 
             string responseInString = webData.sendMsgData(url, data);
-            Console.WriteLine("get record " + responseInString);
+            Console.WriteLine("get refID: " + responseInString);
 
             return responseInString;
            
         }
-
-
+        
         public void insertRecord(string Id, string jobId,
             string appId,  string message, string sendDt, string status){
             
@@ -168,9 +163,6 @@ namespace eJobsSmsManager.Controller
             }
             else
             {
-                //Pending
-            }
-            {
                 return false;
             }
         }
@@ -211,6 +203,23 @@ namespace eJobsSmsManager.Controller
             }
             GSMBot.closeConnection();
             return messageStatus;
+        }
+
+        public void insertLog(int notificationid, string status)
+        {
+            //insertLog
+
+            string url = "http://localhost:49360/LocalService.asmx/insertLog";
+
+            var data = new NameValueCollection();
+
+            data["notificationid"] = notificationid.ToString();
+            data["recipient"] = status.ToString();
+
+
+            string responseInString = webData.sendMsgData(url, data);
+
+            Console.WriteLine("Log added to database. ID : " + notificationid + ", status: " + status);
         }
     }
 }
