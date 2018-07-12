@@ -26,14 +26,14 @@ namespace eJobsSmsManager.Controller
             return webData.Getcontent(dbserver + "/SMSWebService.asmx/getUnsentItems");
         }
 
-        public void updateRecordOnline(int serviceId, int refId)
+        public void updateRecordOnline(int requestID, int refId)
         {
 
             string url = dbserver + "/SMSWebService.asmx/updateNotification";
 
             var data = new NameValueCollection();
 
-            data["serviceId"] = serviceId.ToString();
+            data["requestID"] = requestID.ToString();
             data["refId"] = refId.ToString();
             
             // Console.WriteLine("data update " + data);
@@ -51,7 +51,7 @@ namespace eJobsSmsManager.Controller
             string url = "http://localhost:49360/LocalService.asmx/updateRecord";
 
             var data = new NameValueCollection();
-            Console.WriteLine(serviceId);
+            //Console.WriteLine(serviceId);
             data["serviceId"] = serviceId.ToString();
             
             string responseInString = webData.sendMsgData(url, data);
@@ -64,7 +64,7 @@ namespace eJobsSmsManager.Controller
             string url = "http://localhost:49360/LocalService.asmx/getRecordId";
 
             var data = new NameValueCollection();
-            data["serviceid"] = "1";
+            data["serviceid"] = id;
 
             string responseInString = webData.sendMsgData(url, data);
             Console.WriteLine("get refID: " + responseInString);
@@ -91,7 +91,7 @@ namespace eJobsSmsManager.Controller
 
             string responseInString = webData.sendMsgData(url, data);
 
-            Console.WriteLine("logs update " + responseInString);
+            Console.WriteLine("insert record : " + responseInString);
         }
 
         public void insertRecipients(string notificationid, string recipient)
@@ -175,14 +175,14 @@ namespace eJobsSmsManager.Controller
         {
             GSM GSMBot = new GSM();
             string messageStatus = "";
-            Recipient = "639950753794"; //format (63 + number ex. 639279016517)
-            Message = "c# text test :" + DateTime.Today.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
+           // Recipient = "639950753794"; //format (63 + number ex. 639279016517)
+            //Message = "c# text test :" + DateTime.Today.ToShortDateString() + " " + DateTime.Now.ToShortTimeString();
 
-            Console.WriteLine("CONNECTING TO COM4");
-            if (GSMBot.PortConnect("COM3"))
+            Console.WriteLine("CONNECTING TO COM5");
+            if (GSMBot.PortConnect("COM5"))
             {
                 
-                Console.WriteLine("COM4 CONNECTED. SENDING MESSAGE");
+                Console.WriteLine("COM5 CONNECTED. SENDING MESSAGE");
                 if (GSMBot.GSMSend(Recipient, Message))
                 {
                     //insert serverupdate here
@@ -198,7 +198,7 @@ namespace eJobsSmsManager.Controller
             }
             else
             {
-                Console.WriteLine("Error connecting to Broadband COM4");
+                Console.WriteLine("Error connecting to Broadband COM5");
                 messageStatus = "COM error";
             }
             GSMBot.closeConnection();
@@ -214,12 +214,44 @@ namespace eJobsSmsManager.Controller
             var data = new NameValueCollection();
 
             data["notificationid"] = notificationid.ToString();
-            data["recipient"] = status.ToString();
-
-
+            data["status"] = status.ToString();
+            
             string responseInString = webData.sendMsgData(url, data);
 
-            Console.WriteLine("Log added to database. ID : " + notificationid + ", status: " + status);
+            Console.WriteLine("Log added to database. ID : " + notificationid + ", status: " + status +" : " + responseInString);
+        }
+
+        public string sendMessageOnList(int refID, string message)
+        {
+            //get list of numbers using refID
+            string response = "Sent";
+            string url = "http://localhost:49360/LocalService.asmx/getRecipients";
+
+            var data = new NameValueCollection();
+
+            data["refID"] = refID.ToString();
+
+            DataSet dataset = JsonConvert.DeserializeObject<DataSet>(webData.sendMsgData(url, data));
+            DataTable MessageList = dataset.Tables["Table"];
+            
+            //convert datasource to list
+            List<DataRow> Messagelist = MessageList.AsEnumerable().ToList();
+
+            foreach (DataRow row in MessageList.Rows)
+            {
+                //send each
+                string recipientNumber = row["Recipient"].ToString();
+                Console.WriteLine("Sending Message to " + recipientNumber);
+                string smsresponse = SendSMS(recipientNumber, message);
+
+                //if one of sms response failed, return failed
+                if (smsresponse != "Sent")
+                {
+                    response = smsresponse; 
+                }
+            }
+
+            return response;
         }
     }
 }

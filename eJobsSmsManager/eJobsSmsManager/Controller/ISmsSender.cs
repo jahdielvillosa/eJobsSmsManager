@@ -13,7 +13,7 @@ namespace eJobsSmsManager.Controller
 
         //interface methods
         DataTable getUnsentItemsOnline();
-        void updateRecordOnline(int serviceId, int refId);
+        void updateRecordOnline(int requestID, int refId);
         void updateRecordStatus(int serviceId);
         void insertRecord(string Id, string jobId, string appId, string message, string sendDt , string status);
         DataTable getRecord();
@@ -23,5 +23,6 @@ namespace eJobsSmsManager.Controller
         bool checkrecord(int serviceid);
         bool checkstatus(int serviceid);
         void insertLog(int notificationid,string status);
+        string sendMessageOnList(int refID, string message);
    }
 }

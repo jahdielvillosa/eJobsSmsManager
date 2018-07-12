@@ -59,28 +59,38 @@ namespace eJobsSmsManager.Controller
                 //deserialize json string
                 var json = output;
 
-                Console.WriteLine("Fetching list from server" + json);
+                if(json == null || json=="")
+                {
+                    Console.WriteLine("...");
+                   
+                }
+                else
+                {
 
-                //for json list
-                //Console.WriteLine(json);
-                DataSet dataset = JsonConvert.DeserializeObject<DataSet>(json);
-                DataTable dataTable = dataset.Tables["Table"];
+                    Console.WriteLine("Fetching list from server" + json);
 
-                //display result in console
-                //Console.WriteLine(dataTable.Rows.Count);
-                //foreach (DataRow row in dataTable.Rows)
-                //{
-                //    Console.WriteLine(row["id"]);
-                //    Console.WriteLine(row["RecType"]);
-                //    Console.WriteLine(row["Recipient"]);
-                //    Console.WriteLine(row["Message"]);
-                //    Console.WriteLine(row["DTSending"]);
-                //    Console.WriteLine(row["RefId"]);
-                //    Console.WriteLine(row["RefTable"]);
+                    //for json list
+                    //Console.WriteLine(json);
+                    DataSet dataset = JsonConvert.DeserializeObject<DataSet>(json);
+                    DataTable dataTable = dataset.Tables["Table"];
 
-                //}
+                    //display result in console
+                    //Console.WriteLine(dataTable.Rows.Count);
+                    //foreach (DataRow row in dataTable.Rows)
+                    //{
+                    //    Console.WriteLine(row["id"]);
+                    //    Console.WriteLine(row["RecType"]);
+                    //    Console.WriteLine(row["Recipient"]);
+                    //    Console.WriteLine(row["Message"]);
+                    //    Console.WriteLine(row["DTSending"]);
+                    //    Console.WriteLine(row["RefId"]);
+                    //    Console.WriteLine(row["RefTable"]);
 
-                return dataTable;
+                    //}
+
+                    return dataTable;
+
+                }
 
             }
             catch (Exception ex)
