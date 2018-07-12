@@ -84,6 +84,12 @@
     <Compile Include="Controller\ISmsSender.cs" />
     <Compile Include="Controller\JsonHandler.cs" />
     <Compile Include="Controller\SmsFactory.cs" />
+    <Compile Include="Controls\LogsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LogsControl.Designer.cs">
+      <DependentUpon>LogsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SMSinbox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\LogsControl.resx">
+      <DependentUpon>LogsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SMSinbox.resx">
       <DependentUpon>SMSinbox.cs</DependentUpon>
     </EmbeddedResource>

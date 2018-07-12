@@ -28,7 +28,10 @@ namespace eJobsSmsManager.Controls
 
         private void SMSinbox_Load(object sender, EventArgs e)
         {
-           
+            if(this.MsgStatus.Text == "Pending")
+            {
+                this.MsgStatus.ForeColor = Color.OrangeRed;
+            }
         }
 
         private void SMSinbox_MouseLeave(object sender, EventArgs e)
@@ -47,32 +50,38 @@ namespace eJobsSmsManager.Controls
 
         private void SMSinbox_MouseClick(object sender, MouseEventArgs e)
         {
-            Console.WriteLine();
-            DataTable MessageList = sms.getRecord();
+            MessageBox.Show(this.MsgContent.Text);
+            //Console.WriteLine();
+            //DataTable MessageList = sms.getRecord();
             //bunifuCustomDataGrid1.DataSource = MessageList;
             //Console.WriteLine("open sms inbox mouse click");
 
-            foreach (DataRow data in MessageList.Rows)
-            {
-                /*
-                SMSinbox msg = new SMSinbox();
-                msg.setContent(
-                    0,
-                    data["Recipient"].ToString(),
-                    data["Message"].ToString(),
-                    data["DtSchedule"].ToString(),
-                    "Pending");
+            //foreach (DataRow data in MessageList.Rows)
+            //{
+            /*
+            SMSinbox msg = new SMSinbox();
+            msg.setContent(
+                0,
+                data["Recipient"].ToString(),
+                data["Message"].ToString(),
+                data["DtSchedule"].ToString(),
+                "Pending");
 
-                rows++;
-                tableLayoutPanel1.RowCount = rows;
-                tableLayoutPanel1.Controls.Add(msg);
+            rows++;
+            tableLayoutPanel1.RowCount = rows;
+            tableLayoutPanel1.Controls.Add(msg);
 
-                Console.WriteLine(data["Recipient"]);
-                Console.WriteLine("row count " + rows);
-                */
-                MessageBox.Show(data["Message"].ToString());
-            }
+            Console.WriteLine(data["Recipient"]);
+            Console.WriteLine("row count " + rows);
+            */
+            //  MessageBox.Show(data["Message"].ToString());
+            // }
             //return MessageList;
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -10,6 +10,7 @@ namespace eJobsSmsManager.Controller
     interface ISmsSender
     {
         string dbserver { get; }
+        string localserver { get; }
 
         //interface methods
         DataTable getUnsentItemsOnline();
@@ -17,6 +18,7 @@ namespace eJobsSmsManager.Controller
         void updateRecordStatus(int serviceId);
         void insertRecord(string Id, string jobId, string appId, string message, string sendDt , string status);
         DataTable getRecord();
+        DataTable getLogs();
         string getRefID(string id);
         string SendSMS(string Recipient, string Message);
         void insertRecipients(string notificationid, string recipient);

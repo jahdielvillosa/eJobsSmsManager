@@ -34,6 +34,7 @@
             this.MsgDateTime = new System.Windows.Forms.Label();
             this.MsgStatus = new System.Windows.Forms.Label();
             this.MsgId = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // MsgRecipient
@@ -75,7 +76,7 @@
             this.MsgDateTime.AutoSize = true;
             this.MsgDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.MsgDateTime.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MsgDateTime.Location = new System.Drawing.Point(259, 5);
+            this.MsgDateTime.Location = new System.Drawing.Point(204, 5);
             this.MsgDateTime.Name = "MsgDateTime";
             this.MsgDateTime.Size = new System.Drawing.Size(77, 15);
             this.MsgDateTime.TabIndex = 3;
@@ -104,11 +105,20 @@
             this.MsgId.Text = "Status";
             this.MsgId.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel1.Location = new System.Drawing.Point(-13, -43);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(394, 45);
+            this.panel1.TabIndex = 6;
+            // 
             // SMSinbox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.MsgId);
             this.Controls.Add(this.MsgStatus);
             this.Controls.Add(this.MsgDateTime);
@@ -118,7 +128,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "SMSinbox";
-            this.Size = new System.Drawing.Size(347, 62);
+            this.Size = new System.Drawing.Size(347, 64);
             this.Load += new System.EventHandler(this.SMSinbox_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SMSinbox_MouseClick);
             this.MouseEnter += new System.EventHandler(this.SMSinbox_MouseEnter);
@@ -136,5 +146,6 @@
         private System.Windows.Forms.Label MsgDateTime;
         private System.Windows.Forms.Label MsgStatus;
         private System.Windows.Forms.Label MsgId;
+        private System.Windows.Forms.Panel panel1;
     }
 }

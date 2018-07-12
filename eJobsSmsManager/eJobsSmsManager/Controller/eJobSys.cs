@@ -17,19 +17,27 @@ namespace eJobsSmsManager.Controller
         {
             get
             {
-                return "http://localhost:50382";
+                return "http://localhost:50382/SMSWebService.asmx/";
+            }
+        }
+
+        public string localserver
+        {
+            get
+            {
+                return "http://localhost:49360/LocalService.asmx/";
             }
         }
 
         public DataTable getUnsentItemsOnline()
         {
-            return webData.Getcontent(dbserver + "/SMSWebService.asmx/getUnsentItems");
+            return webData.Getcontent(dbserver + "getUnsentItems");
         }
 
         public void updateRecordOnline(int requestID, int refId)
         {
 
-            string url = dbserver + "/SMSWebService.asmx/updateNotification";
+            string url = dbserver + "updateNotification";
 
             var data = new NameValueCollection();
 
@@ -48,7 +56,7 @@ namespace eJobsSmsManager.Controller
         public void updateRecordStatus(int serviceId)
         {
 
-            string url = "http://localhost:49360/LocalService.asmx/updateRecord";
+            string url = localserver + "updateRecord";
 
             var data = new NameValueCollection();
             //Console.WriteLine(serviceId);
@@ -61,7 +69,7 @@ namespace eJobsSmsManager.Controller
         public string getRefID(string id)
         {
             //test
-            string url = "http://localhost:49360/LocalService.asmx/getRecordId";
+            string url = localserver + "getRecordId";
 
             var data = new NameValueCollection();
             data["serviceid"] = id;
@@ -76,7 +84,7 @@ namespace eJobsSmsManager.Controller
         public void insertRecord(string Id, string jobId,
             string appId,  string message, string sendDt, string status){
             
-            string url = "http://localhost:49360/LocalService.asmx/InsertNotification";
+            string url = localserver + "InsertNotification";
 
             var data = new NameValueCollection();
          
@@ -97,7 +105,7 @@ namespace eJobsSmsManager.Controller
         public void insertRecipients(string notificationid, string recipient)
         {
 
-            string url = "http://localhost:49360/LocalService.asmx/insertRecipients";
+            string url = localserver + "insertRecipients";
 
             var data = new NameValueCollection();
 
@@ -112,26 +120,20 @@ namespace eJobsSmsManager.Controller
 
         public DataTable getRecord()
         {
-            //test
-            string url = "http://localhost:49360/LocalService.asmx/readNotification";
 
-            var data = new NameValueCollection();
-            data["id"] = "1";
-            string responseInString = webData.sendMsgData(url, data);
+            return webData.Getcontent(localserver + "getNotifcationList");
+        }
 
-            Console.WriteLine("get record " + responseInString);
 
-            DataSet dataset = JsonConvert.DeserializeObject<DataSet>(responseInString);
-            DataTable dataTable = dataset.Tables["Table"];
+        public DataTable getLogs()
+        {
 
-            return dataTable;
-
-           // return webData.Getcontent(dbserver + "/SMSWebService.asmx/getUnsentItems");
+            return webData.Getcontent(localserver + "getLogs");
         }
 
         public bool checkrecord(int serviceid)
         {
-            string url = "http://localhost:49360/LocalService.asmx/getRecord";
+            string url = localserver + "getRecord";
 
             var data = new NameValueCollection();
             data["id"] = serviceid.ToString();
@@ -150,7 +152,7 @@ namespace eJobsSmsManager.Controller
         
         public bool checkstatus(int serviceid)
         {
-            string url = "http://localhost:49360/LocalService.asmx/getStatus";
+            string url = localserver + "getStatus";
 
             var data = new NameValueCollection();
             data["serviceid"] = serviceid.ToString();
@@ -209,7 +211,7 @@ namespace eJobsSmsManager.Controller
         {
             //insertLog
 
-            string url = "http://localhost:49360/LocalService.asmx/insertLog";
+            string url = localserver + "insertLog";
 
             var data = new NameValueCollection();
 
@@ -225,7 +227,7 @@ namespace eJobsSmsManager.Controller
         {
             //get list of numbers using refID
             string response = "Sent";
-            string url = "http://localhost:49360/LocalService.asmx/getRecipients";
+            string url = localserver + "getRecipients";
 
             var data = new NameValueCollection();
 
@@ -253,5 +255,7 @@ namespace eJobsSmsManager.Controller
 
             return response;
         }
+
+        
     }
 }

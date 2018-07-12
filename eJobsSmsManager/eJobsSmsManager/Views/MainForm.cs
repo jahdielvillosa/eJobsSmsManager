@@ -23,8 +23,8 @@ namespace eJobsSmsManager.Views
         private void refreshBtn_Click(object sender, EventArgs e)
         {
             LoadMsgPending();
-
             LoadSentItems();
+            LoadLogs();
         }
 
         
@@ -125,10 +125,6 @@ namespace eJobsSmsManager.Views
 
                         //add message to view
                         Console.WriteLine("adding sms inbox ");
-                        SMSinbox msgbox = new SMSinbox();
-                        msgbox.setContent(serviceID, ClientName, message, Schedule, msgStatus);
-                        tableLayoutPanel1.RowCount = tableLayoutPanel1.RowCount + 1;
-                        tableLayoutPanel1.Controls.Add(msgbox);
 
                         //get notification referenceID
                         Console.WriteLine("getRefID : " + svcID);
@@ -165,14 +161,118 @@ namespace eJobsSmsManager.Views
         private void LoadSentItems()
         {
 
+            jobSys = SmsFactory.getSystem("eJobs");
+            //get unset list from db
+            DataTable MessageList = jobSys.getRecord();
+
+            //convert datasource to list
+            List<DataRow> Messagelist = MessageList.AsEnumerable().ToList();
+
+            tableLayoutPanel1.RowCount = 0;
+            tableLayoutPanel1.Controls.Clear();
+            foreach (DataRow row in MessageList.Rows)
+            {
+                string notificationID = row["NotficationId"].ToString();
+                string ClientName = row["ClientName"].ToString();
+                string message = row["Message"].ToString();
+                string Schedule = row["DTlog"].ToString();
+                string msgStatus = row["Status"].ToString();
+
+                SMSinbox msgbox = new SMSinbox();
+                msgbox.setContent(Int32.Parse(notificationID), ClientName, message, Schedule, msgStatus);
+                tableLayoutPanel1.RowCount = tableLayoutPanel1.RowCount + 1;
+                tableLayoutPanel1.Controls.Add(msgbox);
+            }
+
+        }
+
+
+        private void LoadLogs()
+        {
+            
+            jobSys = SmsFactory.getSystem("eJobs");
+            //get unset list from db
+            DataTable MessageList = jobSys.getLogs();
+
+            //convert datasource to list
+            List<DataRow> Messagelist = MessageList.AsEnumerable().ToList();
+
+            LogsTablePanel.RowCount = 0;
+            LogsTablePanel.Controls.Clear();
+            foreach (DataRow row in MessageList.Rows)
+            {
+                string notificationID = row["NotficationId"].ToString();
+                string serviceId = row["ServiceId"].ToString();
+                string clientName = row["ClientName"].ToString();
+                string message = row["Message"].ToString();
+                string schedule = row["DTlog"].ToString();
+                string status = row["Status"].ToString();
+
+                LogsControl logs = new LogsControl();
+                logs.setDetails(Int32.Parse(notificationID), Int32.Parse(serviceId),clientName,status);
+
+                //SMSinbox msgbox = new SMSinbox();
+                //msgbox.setContent(Int32.Parse(notificationID), ClientName, message, Schedule, msgStatus);
+                LogsTablePanel.RowCount = LogsTablePanel.RowCount + 1;
+                LogsTablePanel.Controls.Add(logs);
+            }
+
         }
 
         private void SendBtn_Click(object sender, EventArgs e)
         {
             jobSys = SmsFactory.getSystem("eJobs");
-            jobSys.SendSMS("09950753794","Test from eJobs Manger program");
+            jobSys.SendSMS("09950753794", "Pickup Details" +
+                                        "Date:18 Jul 2018 (Wed)" +
+                                        "Time&Location:12:00:00 Airport" +
+                                        "Guest:Admin Test #09950753794" +
+                                        "Driver:Supplier #09950753794" +
+                                        "Unit:Default "); 
+
             //jobSys.updateRecordStatus(1);
             //jobSys.insertLog(2003,"Sent");
+
+            //LoadSentItems();
+        
+            LoadLogs();
+        }
+
+        private void sendertimer_Tick(object sender, EventArgs e)
+        {
+            LoadSentItems();
+            LoadMsgPending();
+            LoadLogs();
+        }
+
+        private void bunifuiOSSwitch1_OnValueChange(object sender, EventArgs e)
+        {
+
+            sendertimer.Enabled = bunifuiOSSwitch1.Value;
+            Console.WriteLine("Timer : " + sendertimer.Enabled);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+
+            int vertScrollWidth = SystemInformation.VerticalScrollBarWidth;
+
+            tableLayoutPanel1.Padding = new Padding(0, 0, vertScrollWidth, 0);
+
+            LogsTablePanel.Padding = new Padding(0, 0, vertScrollWidth, 0);
+
+
+        }
+
+        private void RefreshNotifbutton_Click(object sender, EventArgs e)
+        {
+            LoadMsgPending();
+            LoadSentItems();
+        }
+
+        private void LogsRefreshbutton_Click(object sender, EventArgs e)
+        {
+            LoadLogs();
         }
     }
 }

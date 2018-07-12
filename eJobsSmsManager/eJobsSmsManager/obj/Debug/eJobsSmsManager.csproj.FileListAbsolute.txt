@@ -26,3 +26,4 @@ C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManage
 C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.exe
 C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.pdb
 C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.csprojResolveAssemblyReference.cache
+C:\Users\Villosa\Documents\GitHub\eJobsSmsManager\eJobsSmsManager\eJobsSmsManager\obj\Debug\eJobsSmsManager.Controls.LogsControl.resources

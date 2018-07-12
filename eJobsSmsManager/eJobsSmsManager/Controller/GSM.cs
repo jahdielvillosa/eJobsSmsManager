@@ -114,7 +114,16 @@ namespace eJobsSmsManager.Controller
 
         public void closeConnection()
         {
+            try
+            {
+
             comm.Close();
+
+            }
+            catch (Exception ex )
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
